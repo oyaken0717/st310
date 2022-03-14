@@ -1,10 +1,94 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!--■ ①必要に応じてコンポーネントのメモリを増強し、処理能力をあげる -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<title>ST-310</title>
 </head>
 <body>
-	コンソールの確認
+
+	<span th:include="/common/fragment-part::header"></span>
+
+	<!--■ メイン部分 -->
+	<div class="main">
+			<div class="container text-center">
+			
+				<h3 class="my-5 col-xs-12">お疲れ様でした！！</h3>
+				
+<div class="row">
+<div class="mx-auto">		
+<div class="card" style="width: 40rem;">
+<div class="card-block py-4">
+					<h4 class="pb-4">■あなたのチューブの長さは…</h4>
+					<h3 class="pb-4" th:text="${answer +'cmです。'}">16.5cmです。</h3>
+					<div>
+						<img src="/img_order/1.JPG" class="w-75">
+	      			</div>
+
+	      			<div class="pt-4"></div>
+	      			<hr>
+	      			<h5 class="pt-4">■↓をコピペしてコメント頂くだけでもすごく喜びます。</h5>
+	      			<h5 class="pt-4">『アプリ使ったよ。』</h5>
+	      			<div>
+						<a class="btn my-4" href="https://www.youtube.com/watch?v=3q8J73BFcFY" target="_blank" rel="noopener noreferrer" style="background-color:#D9E3FF;">
+							YouTubeの動画へ
+						</a>
+						<a class="btn ml-4 m-4" href="https://mobile.twitter.com/oyaken0717" target="_blank" rel="noopener noreferrer" style="background-color: #D9E3FF;">
+							oyakenのTwitterへ
+						</a>
+					</div>
+					<div>
+						<img src="/img_order/1.JPG" class="w-50">
+	      			</div>
+
+	      			<div class="pt-4"></div>
+	      			<hr>
+	      			<h4 class="pt-4">■今回あなたが選択したのは</h4>
+	      			<h4 class="pb-4">最終的に以下となります。</h4>
+	      			
+		<table class="table table-hover table-sm">
+			<thead style="background-color:#D9E3FF;">
+			    <tr>
+			      <th scope="col" style="width: 17%">部位</th>
+			      <th scope="col" style="width: 10%">長さ</th>
+			    </tr>
+		  </thead>
+		  <tbody style="background-color:#FFFFFF;">
+	  
+		    <tr>
+		      <td class="align-middle">外側</td>
+		      <td scope="row" class="align-middle" th:text="${orderForm.outSideLine +'cm'}">7.5cm</td>
+		    </tr>
+
+		    <tr>
+		      <td class="align-middle">底面</td>
+		      <td scope="row" class="align-middle">
+		      	1.5cm
+		      </td>
+		    </tr>
+
+		    <tr>
+		      <td class="align-middle">内側</td>
+		      <td scope="row" class="align-middle" th:text="${orderForm.inSideLine +'cm'}"></td>
+		    </tr>
+
+		  </tbody>
+		</table>
+					<a th:href="@{/}" class="btn my-4" style="background-color:#D9E3FF;">もう一回やる</a>
+					
+</div>
+</div>
+</div>
+</div>
+				
+			<!--■ container -->
+			</div>
+	<!--■ mainの終わり -->		
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>

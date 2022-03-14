@@ -15,15 +15,18 @@
 			<div class="container text-center">
 				<h3>
 					<div class="my-4">外側のグリップの長さを</div>
-					<div class="my-4">選んでください</div>
+					<div class="mt-4">選んでください</div>
 				</h3>
 				
 <div class="row">
 <div class="mx-auto">		
 <div class="" style="width: 30rem;">
-<div class=" py-4">
-	<form th:action="@{/topSpace/toTopSpace}" method="post" th:object="${orderForm}">
-		<table class="table table-hover table-sm ">
+<div class="py-2">
+	<form th:action="@{/outSideLine/outSideLineRegister}" method="post" th:object="${orderForm}">
+		
+		<h5 th:errors="*{outSideLine}" style="color:red" class="mb-4"></h5>
+		
+		<table class="table table-hover table-sm">
 			<thead style="background-color:#D9E3FF;">
 			    <tr>
 			      <th scope="col" style="width: 10%">選択</th>
@@ -34,9 +37,9 @@
 		  <tbody style="background-color:#FFFFFF;">
 	  
 		    <tr>
-		      <th scope="row" class="align-middle">
-				<input type="radio" class="form-control" name="outSideLine" th:field="*{outSideLine}" value="1">
-		      </th>
+		      <td scope="row" class="align-middle">
+				<input type="radio" class="form-control" name="outSideLine" value="5.5">
+		      </td>
 		      <td class="align-middle">正規グリップ</td>
 		      <td>
 				<img src="/img_order/2.JPG" class="w-50">
@@ -44,9 +47,9 @@
 		    </tr>
 
 		    <tr>
-		      <th scope="row" class="align-middle">
-		      	<input type="radio" class="form-control" name="outSideLine" th:field="*{outSideLine}" value="2">
-		      </th>
+		      <td scope="row" class="align-middle">
+		      	<input type="radio" class="form-control" name="outSideLine" value="6.8">
+		      </td>
 		      <td class="align-middle">中間</td>
 		      <td>
 				<img src="/img_order/2.JPG" class="w-50">
@@ -54,9 +57,9 @@
 		    </tr>
 
 		    <tr>
-		      <th scope="row" class="align-middle">
-		      	<input type="radio" class="form-control" name="outSideLine" th:field="*{outSideLine}" value="3">
-		      </th>
+		      <td scope="row" class="align-middle">
+		      	<input type="radio" class="form-control" name="outSideLine" value="8.5">
+		      </td>
 		      <td class="align-middle">最長</td>
 		      <td>
 				<img src="/img_order/2.JPG" class="w-50">

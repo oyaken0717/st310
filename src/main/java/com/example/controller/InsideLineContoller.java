@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,8 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.form.OrderForm;
 
 @Controller
-@RequestMapping("/outSideLine")
-public class OutSideLineContoller {
+@RequestMapping("/insideLine")
+public class InsideLineContoller {
 	
 	@Autowired
 	private HttpSession session;
@@ -25,46 +26,48 @@ public class OutSideLineContoller {
 	public OrderForm setUpForm() {
 		return new OrderForm();
 	}
-
-	@RequestMapping("/toOutSideLine")
-	public String toOutSideLine() {
+	
+	@RequestMapping("/toInsideLine")
+	public String toInsideLine() {
 		
 		Integer sessionId = (Integer)session.getAttribute("sessionId");
 		if (Objects.isNull(sessionId)) {
 			return "redirect:/";
 		}
 		
-		return "out_side_line";
+		return "in_side_line";
 	}
 	
-	@RequestMapping("/outSideLineRegister")
-	public String outSideLineRegister(@Validated OrderForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+	@RequestMapping("/insideLineRegister")
+	public String insideLineRegister(@Validated OrderForm form, BindingResult result, RedirectAttributes redirectAttributes) {
 
-		if ( Objects.isNull(form.getOutSideLine()) ) {
-			result.rejectValue("outSideLine", null, "選択されていません");
-			return "out_side_line";
+		if ( Objects.isNull(form.getInSideLine()) ) {
+			result.rejectValue("inSideLine", null, "選択されていません");
+			return "in_side_line";
 		}
 		
 		if ( notMatch(form) ) {
-			return "redirect:/";
+			 return "redirect:/";
 		}
 		
-		session.setAttribute("sessionForm", form);
-		return "redirect:/topSpace/toTopSpace";
+		return "redirect:/finish/toFinish";
 	}
-
+	
 	private boolean notMatch(OrderForm form) {
 		
-		String outSideLine = form.getOutSideLine();
 		boolean notMatch = false;
+		String inSideLine = form.getInSideLine();
+		OrderForm sessionForm = (OrderForm) session.getAttribute("sessionForm");
 		
-		if ( !"5.5".equals(outSideLine)  &&
-			 !"6.8".equals(outSideLine)  &&
-			 !"8.5".equals(outSideLine)  ){
-			notMatch = true;
+		if ( !"2.0".equals(inSideLine)  &&
+			 !"4.0".equals(inSideLine)  &&
+			 !"6.2".equals(inSideLine)  ){
+			 notMatch = true;
 		}
 		
+		sessionForm.setInSideLine(inSideLine);			
+		session.setAttribute("sessionForm", sessionForm);
+
 		return notMatch;
 	}
-
 }
