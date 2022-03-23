@@ -40,7 +40,9 @@ public class OutSideLineContoller {
 	@RequestMapping("/outSideLineRegister")
 	public String outSideLineRegister(@Validated OrderForm form, BindingResult result, RedirectAttributes redirectAttributes) {
 
-		if ( Objects.isNull(form.getOutSideLine()) ) {
+		String outSideLine = form.getOutSideLine(); 
+		
+		if ( Objects.isNull(outSideLine) ) {
 			result.rejectValue("outSideLine", null, "選択されていません");
 			return "out_side_line";
 		}
@@ -50,7 +52,11 @@ public class OutSideLineContoller {
 		}
 		
 		session.setAttribute("sessionForm", form);
-		return "redirect:/topSpace/toTopSpace";
+		
+		if ("8.5".equals(outSideLine)) {
+			return "redirect:/topSpace/toTopSpace";
+		}
+		return "redirect:/insideLine/toInsideLine";
 	}
 
 	private boolean notMatch(OrderForm form) {

@@ -1,12 +1,13 @@
 package com.example.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -69,7 +70,7 @@ public class TopSpaceContoller {
 		}
 
 		if ( notMatch(candidatedTopSpace) ) {
-			result.rejectValue("selectedTopSpace", null, "8.5cm以内にしてください");
+			result.rejectValue("selectedTopSpace", null, "0.7cm以内にしてください");
 			return "top_space";
 		}
 		
@@ -77,14 +78,14 @@ public class TopSpaceContoller {
 		sessionForm.setOutSideLine(outSideLine);
 		
 		session.setAttribute("sessionForm", sessionForm);
-		return "redirect:/underSpace/toUnderSpace";
+		return "redirect:/insideLine/toInsideLine";
 	}
 
 	private boolean notMatch(String candidatedTopSpace) {
 
 		boolean notMatch = false;
 		double topSpace = Double.parseDouble(candidatedTopSpace);
-		double outLine = 8.5;
+		double outLine = 0.7;
 		
 		//■入力した間の差が8.5cmよりも長い時(正規グリップよりも底に近くなるのでアウト)
 		if (topSpace > outLine) {
@@ -95,51 +96,31 @@ public class TopSpaceContoller {
 	}
 
 	
-	private String decideOutSideLine(String candidatedOutSideLine, String candidatedTopSpace) {
+	private String decideOutSideLine(String outSideLine, String topSpace) {
 
-		double outSideLine = Double.parseDouble(candidatedOutSideLine);
-		double topSpace = Double.parseDouble(candidatedTopSpace);
-		
-		double outLine = 8.5;
-		
-		double gripLine = 5.5;
-		double middleLine = 6.8;
-		
-		String decidedOutSideLine = null;
-		
-		//■入力した間の差が8.5cmよりも長い時(正規グリップよりも底に近くなるのでアウト)
-		if (topSpace > outLine) {
-			//start画面に遷移			
-			return null;
-		}
+		ArrayList<String> measuredList = new ArrayList<>( Arrays.asList("0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7") );
+		ArrayList<String> resultList   = new ArrayList<>( Arrays.asList("8.6", "8.5", "8.3", "8.2", "8.1", "8.0", "7.9") );
 
-		//■topSpaceの値の調整
-		//■1.正規グリップの長さ		
-		if (outSideLine == gripLine) {
-			if (topSpace > 3.2) {
-				//最長-正規グリップの間(3.2cm)よりも長い場合は引き算が必要な為topSpaceを調整
-				topSpace = topSpace - 3.2;
-			}else {
-				//最長-正規グリップの間が3.2cm以下は最小の長さに影響しないので0を格納する。
-				topSpace = 0;
+		for (int i = 0; i < measuredList.size(); i++) {
+			if ( measuredList.get(i).equals(topSpace) ) {
+				outSideLine = resultList.get(i);
 			}
 		}
 		
-		//■2.中間の長さ
-		if (outSideLine == middleLine) {
-			if (topSpace > 1.7) {
-				//最長-中間の間(1.7cm)よりも長い場合は引き算が必要な為topSpaceを調整
-				topSpace = topSpace - 1.7;
-			}else {
-				//最長-中間の間が1.7cm以下は中間の長さに影響しないので0を格納する。
-				topSpace = 0;
-			}
-		}
-		
-		//■3.外側の長さは特に微調整なし
-		outSideLine = outSideLine - topSpace;
-
-		decidedOutSideLine = String.valueOf(outSideLine);
-		return decidedOutSideLine;
+		return outSideLine;
 	}
+
+//	private String decideOutSideLine2(String candidatedOutSideLine, String candidatedTopSpace) {
+//
+//		double outSideLine = Double.parseDouble(candidatedOutSideLine);
+//		double topSpace = Double.parseDouble(candidatedTopSpace);
+//		String decidedOutSideLine = null;
+//		
+//		outSideLine = outSideLine - topSpace; 
+//		
+//		decidedOutSideLine = String.valueOf(outSideLine);
+//		return decidedOutSideLine;
+//	}
+
+	
 }

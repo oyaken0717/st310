@@ -8,6 +8,9 @@ public class OrderForm {
 	/** バーナーと遮熱版の間の長さ */
 	private String topSpace;
 	
+	/** 底面から遮熱版までの長さ */
+	private String burnerTable;
+	
 	/** バーナーと遮熱版の間の長さ(入力) */
 	private String inputTopSpace;
 	
@@ -66,6 +69,13 @@ public class OrderForm {
 
 	public void setInSideLine(String inSideLine) {
 		this.inSideLine = inSideLine;
+	}
+	public String getBurnerTable() {
+		return burnerTable;
+	}
+	
+	public void setBurnerTable(String burnerTable) {
+		this.burnerTable = burnerTable;
 	}
 
 }
