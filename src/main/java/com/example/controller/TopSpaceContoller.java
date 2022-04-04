@@ -98,9 +98,13 @@ public class TopSpaceContoller {
 	
 	private String decideOutSideLine(String outSideLine, String topSpace) {
 
-		ArrayList<String> measuredList = new ArrayList<>( Arrays.asList("0.0", "0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1", "1.1", "1.2") );
+		ArrayList<String> measuredList = new ArrayList<>( Arrays.asList("0.0", "0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2") );
 		ArrayList<String> resultList   = new ArrayList<>( Arrays.asList("9.1", "9.0", "8.8", "8.7", "8.6", "8.5", "8.4", "8.3", "8.2", "8.1", "8.0", "7.9", "7.8") );
 
+		if ("1".equals(topSpace)) {
+			topSpace = "1.0";
+		}
+		
 		for (int i = 0; i < measuredList.size(); i++) {
 			if ( measuredList.get(i).equals(topSpace) ) {
 				outSideLine = resultList.get(i);
