@@ -53,7 +53,7 @@ public class OutSideLineContoller {
 		
 		session.setAttribute("sessionForm", form);
 		
-		if ("8.5".equals(outSideLine)) {
+		if ("9.1".equals(outSideLine)) {
 			return "redirect:/topSpace/toTopSpace";
 		}
 		return "redirect:/insideLine/toInsideLine";
@@ -66,7 +66,7 @@ public class OutSideLineContoller {
 		
 		if ( !"5.5".equals(outSideLine)  &&
 			 !"6.8".equals(outSideLine)  &&
-			 !"8.5".equals(outSideLine)  ){
+			 !"9.1".equals(outSideLine)  ){
 			notMatch = true;
 		}
 		

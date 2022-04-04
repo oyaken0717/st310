@@ -60,7 +60,7 @@ public class InsideLineContoller {
 		
 		if ( !"2.0".equals(inSideLine)  &&
 			 !"4.0".equals(inSideLine)  &&
-			 !"6.2".equals(inSideLine)  ){
+			 !"6.5".equals(inSideLine)  ){
 			 notMatch = true;
 		}
 		

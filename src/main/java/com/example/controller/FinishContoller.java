@@ -33,13 +33,17 @@ public class FinishContoller {
 		}
 		session.removeAttribute("sessionId");
 		
+		
 		OrderForm sessionForm = (OrderForm) session.getAttribute("sessionForm");
 		model.addAttribute("orderForm",sessionForm);
 		session.removeAttribute("sessionForm");
 
-		double answer = getAnswer(sessionForm);
 		
+		double answer = getAnswer(sessionForm);
 		model.addAttribute("answer",answer);
+		
+		String pictureNum = getPicture(sessionForm);
+		model.addAttribute("pictureNum",pictureNum);
 		
 		return "finish";
 	}
@@ -55,6 +59,47 @@ public class FinishContoller {
 		
 		return answer;
 
+	}
+
+	private String getPicture(OrderForm sessionForm) {
+
+		String outSideLine = sessionForm.getOutSideLine();
+		String inSideLine = sessionForm.getInSideLine();
+		StringBuilder pictureNum = new StringBuilder();
+		
+		switch (outSideLine) {
+			case "5.5":
+				pictureNum.append("1");
+				break;
+			case "6.8":
+				pictureNum.append("2");
+				break;
+			case "9.1":
+				pictureNum.append("4");
+				break;
+				
+			default:
+				pictureNum.append("3");
+				break;
+		}
+
+		switch (inSideLine) {
+			case "2.0":
+				pictureNum.append("1");
+				break;
+			case "4.0":
+				pictureNum.append("2");
+				break;
+			case "6.5":
+				pictureNum.append("3");
+				break;
+				
+			default:
+				pictureNum.append("3");
+				break;
+		}
+
+		return pictureNum.toString();
 	}
 
 }
